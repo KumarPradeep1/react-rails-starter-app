@@ -10,24 +10,13 @@ def apply_template!
   template "README.md.tt", :force => true
   remove_file "README.rdoc"
 
-  copy_file "bin/webpack"
-  copy_file "bin/webpack-dev-server"
-  copy_file "bin/yarn"
-  copy_file "config/webpacker.yml"
-
   copy_file "gitignore", ".gitignore", :force => true
-  copy_file "babelrc", ".babelrc", :force => true
-  copy_file "postcssrc", ".postcssrc.yml", :force => true
-  copy_file "Package.tt", "package.json", :force => true
-
   template "ruby-version.tt", ".ruby-version"
 
   copy_file "Procfile.dev"
-  copy_file "yarn.lock"
 
   apply "app/template.rb"
   apply "bin/template.rb"
-
 
   run_with_clean_bundler_env "bin/setup"
   generate_spring_binstubs
