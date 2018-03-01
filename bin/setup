@@ -10,6 +10,8 @@ def setup!
     run "rails webpacker:install"
     run "rails webpacker:install:react"
     p "----------Setting Up Wepaker with React is Done-------------"
+
+    run "yarn add redux react-redux react-router-dom"
   end
 end
 

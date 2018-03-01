@@ -1,0 +1,74 @@
+
+language: ruby
+cache: bundler
+
+rvm:
+  - 2.4.3
+
+# sudo: enabled
+
+services:
+  - postgresql
+
+branches:
+  only:
+  - master
+
+# Specify environment variables
+# env:
+# - DB=mongodb
+
+before_script:
+  - cp config/database.yml.travis config/database.yml
+  - psql -c 'create database react-rails-starter-app_test;' -U postgres
+
+before_install:
+  # - sudo apt-get -qq update
+
+install:
+  - bundle install
+
+script:
+  - RAILS_ENV=test bundle exec rake db:migrate --trace
+  - bundle exec rake db:test:prepare
+  # - bundle exec rake ci:tests
+
+
+#deploy:
+#  provider: s3
+#  access_key_id: "YOUR AWS ACCESS KEY"
+#  secret_access_key: "YOUR AWS SECRET KEY"
+#  bucket: "S3 Bucket"
+#  skip_cleanup: true
+
+notifications:
+  email:
+    recipients:
+      - pradeep@mashey.com
+      - vel@mashey.com
+    on_success: never # default: change
+    on_failure: always # default: always
+  # slack:
+  #   rooms:
+  #     - <account>:<token>#development
+  #   on_success: change # default: always
+  #   on_failure: always # default: always
+
+
+# branches:
+#   except:
+#     - master
+
+# install:
+#   - bundle install
+
+
+# before_script:
+#   # - bundle exec rake db:test:prepare
+#   # - bundle exec rake db:migrate
+# script:
+#   # - bundle exec rake ci:tests
+# services:
+#   - postgresql
+# notifications:
+#   email: true

@@ -1,0 +1,9 @@
+default: &default
+  adapter: postgresql
+  pool: 8
+  timeout: 5000
+  host: localhost
+
+test: &test
+  <<: *default
+  database: react-rails-starter-app_test
