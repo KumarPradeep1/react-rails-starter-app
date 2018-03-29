@@ -6,4 +6,4 @@ default: &default
 
 test: &test
   <<: *default
-  database: react-rails-starter-app_test
+  database: react_rails_starter_app_test
