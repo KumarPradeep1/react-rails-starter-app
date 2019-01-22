@@ -1,4 +1,4 @@
-RAILS_REQUIREMENT = "~> 5.1.0".freeze
+RAILS_REQUIREMENT = "~> 5.2.2".freeze
 
 def apply_template!
   assert_minimum_rails_version
